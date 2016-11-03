@@ -26,9 +26,21 @@ int main() {
     GPIOA->MODER |= (1 << (LED_PIN << 1));
     /* Configure GPIOA pin 5 in max speed */
     GPIOA->OSPEEDR |= (3 << (LED_PIN << 1));
- 
-    /* Turn on the LED */
-    GPIOA->BSRR |= (1 << LED_PIN);
+    
+    while(1)
+    {
+        /* Turn on the LED */
+        GPIOA->BSRR |= (1 << LED_PIN);
+        
+        for(volatile int i = 0; i < 1000000; i++)
+            ;
+        
+        /* Turn off the LED */
+        GPIOA->BSRR |= (1 << LED_PIN) << 16u;
+        
+        for(volatile int i = 0; i < 1000000; i++)
+            ;
+    }
     
     return 0;
 }
