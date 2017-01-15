@@ -17,7 +17,7 @@
 *
 */
 #include <stm32f4xx.h> 
-#define LED_PIN 4
+#define LED_PIN 5
 
 int main() {
     /* Enbale GPIOA clock */
